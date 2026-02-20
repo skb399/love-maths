@@ -31,6 +31,10 @@ function runGame(gameType) {
     }
     else if (gameType === "multiply") {
         displayMultiplyQuestion(num1, num2);
+
+    } else if (gameType === "subtract") {
+        displaySubtractQuestion(num1, num2);
+
     } else {
         alert(`Unknown game type: ${gameType}`);
         throw `Unknown game type: ${gameType} Aborting!`;
@@ -78,7 +82,11 @@ function calculateCorrectAnswer() {
     }
     else if (operator === "x") {
         return [operand1 * operand2, "multiply"];
-    } else {
+    }
+    else if (operator === "-") {
+        return [operand1 - operand2, "subtract"];
+    }
+    else {
         alert(`Unimplemented operator ${operator}`);
         throw `Unimplemented operator ${operator}. Aborting`;
     }
@@ -115,7 +123,16 @@ function displayAdditionQuestion(operand1, operand2) {
 
 }
 
-function displaySubtractQuestion() {
+function displaySubtractQuestion(operand1, operand2) {
+    // We need to have the biggest number first for the subtraction calculation, because we don't want negative numbers. The
+    // below ternary condition (if statement) checks if operand1 is bigger than operand2, if so then return operand1, else return operand2.
+    document.getElementById('operand1').textContent = operand1 > operand2 ? operand1 : operand2;
+    //The same goes for operand2, but we want the smaller number to be second for the subtraction calculation, 
+    // so we return the opposite of what we did for operand1. If operand1 is bigger than operand2, then return operand2, 
+    // else return operand1.
+    document.getElementById('operand2').textContent = operand1 > operand2 ? operand2 : operand1;
+    // Set the operator element to the "-" sign
+    document.getElementById('operator').textContent = "-";
 
 }
 
