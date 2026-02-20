@@ -28,11 +28,16 @@ function runGame(gameType) {
 
     if (gameType === "addition") {
         displayAdditionQuestion(num1, num2);
+    }
+    else if (gameType === "multiply") {
+        displayMultiplyQuestion(num1, num2);
     } else {
         alert(`Unknown game type: ${gameType}`);
         throw `Unknown game type: ${gameType} Aborting!`;
     }
+
 }
+
 
 
 /**
@@ -70,11 +75,15 @@ function calculateCorrectAnswer() {
     // Return the correct answer based on the operator
     if (operator === "+") {
         return [operand1 + operand2, "addition"];
+    }
+    else if (operator === "x") {
+        return [operand1 * operand2, "multiply"];
     } else {
         alert(`Unimplemented operator ${operator}`);
         throw `Unimplemented operator ${operator}. Aborting`;
     }
 }
+
 /**
  * Gets the current score from the DOM and increments it by 1
  */
@@ -110,6 +119,12 @@ function displaySubtractQuestion() {
 
 }
 
-function displayMultiplyQuestion() {
+function displayMultiplyQuestion(operand1, operand2) {
+    // Set the operand1 and operand2 elements to the values passed in   
+    document.getElementById('operand1').textContent = operand1;
+    // Set the operand2 element to the value passed in
+    document.getElementById('operand2').textContent = operand2;
+    // Set the operator element to the "+" sign
+    document.getElementById('operator').textContent = "x";
 
 }
